@@ -46,19 +46,9 @@ export const projects = [
       "打通 STT -> WhatsApp -> OpenClaw -> LLM 端到端数据流的极速产出体验。",
       "Zero-Touch 探针自愈部署：子进程崩溃主动捕获日志并驱动大模型修改代码，零人工干预上线。",
       "重构底层通信网关，突破 LLM 超时限制，解决跨节点通信黑洞。"
-    ]
-  },
-  {
-    id: "rag-platform",
-    name: "企业级智能对话与知识库中台",
-    role: "核心开发者",
-    techStack: ["FastAPI", "LLM Routing", "Milvus", "BGE-M3", "Reranker"],
-    description: "为内网多业务提供低代码 AI API 支撑，解决传统管理孤立与大模型业务幻觉。",
-    highlights: [
-      "自研分片算子与混合检索，将复杂业务知识召回准确率提升至 95% 以上。",
-      "异构模型路由网关，精准意图前置判断，算力优化且首字节延迟控制在 250ms 内。",
-      "在后端代码层实现跨租户、跨密级数据的绝对隔离过滤。"
-    ]
+    ],
+    // 💡 注意这里：如果您有视频，只需将其放入 public 文件夹（如 public/omni-worker.mp4）并填写路径
+    videoUrl: "" 
   },
   {
     id: "ai-eda-agent",
@@ -70,7 +60,8 @@ export const projects = [
       "动态挂载 AST 与结构化上下文注入，极大提升硬件代码生成的工业可用性。",
       "Flask + Celery 分布式任务队列，利用 WebSocket 实现毫秒级进度推送。",
       "跨界调度 ModelSim，实现软硬跨界调用与波形分析闭环。"
-    ]
+    ],
+    videoUrl: ""
   },
   {
     id: "erp-system",
@@ -82,18 +73,7 @@ export const projects = [
       "集成 Qwen-VL 实现异构发票扫描件的高精度解析与智能纠错。",
       "自研底层 AST 渲染器，将散列前端数据秒级渲染为标准化 Word/Excel。",
       "依托 DeepSeek 构建专业硬件参数 RAG，实现精准检索与参数溯源对比。"
-    ]
-  },
-  {
-    id: "offline-gov",
-    name: "多区县政务全链路数据采编中枢",
-    role: "全栈研发",
-    techStack: ["Monorepo", "SQLite", "Offline-First", "AST渲染"],
-    description: "应对复杂野外无网作业环境的离线优先政务级数字化闭环构建。",
-    highlights: [
-      "Offline-First 架构+SQLite，极强离线环境录入支持，恢复网络无损同步。",
-      "影像的无感压缩级联命名与双重物理隔离的传输加密隧道设计。",
-      "千万卷宗数据的流式 AST 动态打包渲染分发，无缝对接政务核心审计系统。"
-    ]
+    ],
+    videoUrl: ""
   }
 ];

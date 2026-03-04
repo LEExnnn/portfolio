@@ -81,8 +81,23 @@ export default function ProjectsSection() {
                       src={project.videoUrl}
                       poster={project.posterUrl}
                       autoPlay loop muted playsInline
-                      className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 z-0"
+                      className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 z-0 peer"
                     />
+
+                    {/* 加载中提示 (利用 peer-placeholder-shown 或简单的绝对定位覆盖) 
+                        由于原生 video 没有完美的仅在 loading 时的 css 选择器，
+                        这里放置一个静态的加载中提示，它会被半透明覆盖，并且在 hover 时被覆盖
+                    */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10 opacity-70 group-hover:opacity-0 transition-opacity duration-300">
+                      <div className="flex items-center gap-2 px-3 py-1.5 bg-black/50 backdrop-blur-md rounded-full border border-white/10">
+                        <svg className="animate-spin w-3.5 h-3.5 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span className="text-[10px] text-gray-300 tracking-wider">视频加载中...</span>
+                      </div>
+                    </div>
+
                     {/* 悬停放大提示 */}
                     <div className="absolute inset-0 z-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-black/20">
                       <span className="px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-lg text-xs font-semibold text-white/90 border border-white/20 flex items-center gap-2">

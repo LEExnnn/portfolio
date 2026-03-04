@@ -13,12 +13,15 @@ export default function ProjectsSection() {
   // 追踪当前放大的视频项目 (储存项目对象以便获取 url 和 posterUrl)
   const [activeProject, setActiveProject] = useState<{ videoUrl?: string, posterUrl?: string } | null>(null);
 
-  // 记录已经加载完成可以播放的视频 URL，避免加载圈一直转
-  const [loadedVideos, setLoadedVideos] = useState<Set<string>>(new Set());
+  // 控制模态框中的视频加载状态
+  const [modalVideoLoaded, setModalVideoLoaded] = useState(false);
 
-  const handleVideoCanPlay = (url: string) => {
-    setLoadedVideos(prev => new Set(prev).add(url));
-  };
+  // 每次打开新的视频，重置它的加载状态
+  useEffect(() => {
+    if (activeProject) {
+      setModalVideoLoaded(false);
+    }
+  }, [activeProject]);
 
   // 当弹窗打开时，静止背景滚动
   useEffect(() => {
@@ -88,38 +91,24 @@ export default function ProjectsSection() {
                       src={project.videoUrl}
                       poster={project.posterUrl}
                       autoPlay loop muted playsInline
-                      onCanPlay={() => handleVideoCanPlay(project.videoUrl)}
                       className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 z-0 peer"
                     />
 
-                    {/* 加载中提示: 仅在视频尚未触发 canplay 事件时显示 */}
-                    {!loadedVideos.has(project.videoUrl) ? (
-                      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10 opacity-70 group-hover:opacity-0 transition-opacity duration-300">
-                        <div className="flex items-center gap-2 px-3 py-1.5 bg-black/50 backdrop-blur-md rounded-full border border-white/10">
-                          <svg className="animate-spin w-3.5 h-3.5 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          <span className="text-[10px] text-gray-300 tracking-wider">视频加载中...</span>
-                        </div>
+                    {/* 常驻播放按钮覆盖层 (去掉加载动画) */}
+                    <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none bg-black/10 group-hover:bg-black/30 transition-colors duration-300">
+                      <div className="relative flex items-center justify-center w-14 h-14 rounded-full bg-black/40 backdrop-blur-md border border-white/20 group-hover:bg-indigo-600/60 group-hover:border-indigo-400/50 group-hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                        {/* 呼吸灯特效背景 */}
+                        <div className="absolute inset-0 rounded-full border border-indigo-500/30 opacity-0 group-hover:animate-ping group-hover:opacity-100" />
+                        <svg className="w-6 h-6 text-white ml-1 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
                       </div>
-                    ) : (
-                      <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none bg-black/10 group-hover:bg-black/30 transition-colors duration-300">
-                        {/* 圆形播放按钮背景 (常驻显示，适配移动端) */}
-                        <div className="relative flex items-center justify-center w-14 h-14 rounded-full bg-black/40 backdrop-blur-md border border-white/20 group-hover:bg-indigo-600/60 group-hover:border-indigo-400/50 group-hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                          {/* 呼吸灯特效背景 */}
-                          <div className="absolute inset-0 rounded-full border border-indigo-500/30 opacity-0 group-hover:animate-ping group-hover:opacity-100" />
-                          <svg className="w-6 h-6 text-white ml-1 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
-                        </div>
-                        {/* 移动端不依赖 hover 即显示的极简文字提示 */}
-                        <div className="absolute bottom-4 left-4 flex items-center gap-1.5 px-2.5 py-1 bg-black/50 backdrop-blur-sm rounded-md border border-white/10 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                          <span className="text-[10px] font-semibold text-white/90 tracking-wide">点击播放</span>
-                        </div>
+                      {/* 移动端不依赖 hover 即显示的极简文字提示 */}
+                      <div className="absolute bottom-4 left-4 flex items-center gap-1.5 px-2.5 py-1 bg-black/50 backdrop-blur-sm rounded-md border border-white/10 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                        <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                        <span className="text-[10px] font-semibold text-white/90 tracking-wide">点击放大演示</span>
                       </div>
-                    )}
+                    </div>
                   </>
                 ) : (
                   <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/60 via-[#0a0a0a] to-purple-950/40">
@@ -231,8 +220,45 @@ export default function ProjectsSection() {
                 poster={activeProject.posterUrl}
                 autoPlay
                 controls
+                onCanPlay={() => setModalVideoLoaded(true)}
                 className="w-full h-full object-contain"
               />
+
+              {/* 高级质感加载动画: 科幻闪电/脉冲 (代替恶心的转圈) */}
+              {!modalVideoLoaded && (
+                <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm pointer-events-none">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center gap-6 px-12 py-10 rounded-3xl bg-white/[0.02] border border-white/10 shadow-[0_0_80px_rgba(99,102,241,0.15)]"
+                  >
+                    {/* 呼吸光球与闪电图标 */}
+                    <div className="relative w-16 h-16 flex items-center justify-center mb-2">
+                      <motion.div
+                        animate={{ scale: [1, 1.4, 1], opacity: [0.6, 0.1, 0.6] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute inset-0 bg-indigo-500 rounded-full blur-xl"
+                      />
+                      <svg className="w-8 h-8 text-indigo-300 relative z-10 filter drop-shadow-[0_0_10px_rgba(165,180,252,0.8)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+
+                    <span className="text-xs font-bold tracking-[0.3em] text-indigo-200/90 uppercase filter drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">
+                      Initializing Data Stream
+                    </span>
+
+                    {/* 游走光线进度条 */}
+                    <div className="w-56 h-[2px] bg-white/10 rounded-full overflow-hidden relative shadow-[0_0_15px_rgba(99,102,241,0.6)]">
+                      <motion.div
+                        className="absolute top-0 bottom-0 w-1/3 bg-gradient-to-r from-transparent via-indigo-400 to-transparent"
+                        animate={{ x: ["-100%", "300%"] }}
+                        transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
+                      />
+                    </div>
+                  </motion.div>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}

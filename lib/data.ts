@@ -48,7 +48,8 @@ export const projects = [
       "重构底层通信网关，突破 LLM 超时限制，解决跨节点通信黑洞。"
     ],
     // 💡 将视频文件放入 public/ 文件夹，命名为 omni-worker.mp4，然后将下方改为 "/omni-worker.mp4"
-    videoUrl: "/omni-worker.mp4"
+    videoUrl: "/omni-worker.mp4",
+    posterUrl: "/posters/omni-worker.jpg"
   },
   {
     id: "ai-eda-agent",
@@ -62,7 +63,8 @@ export const projects = [
       "跨界调度 ModelSim，实现软硬跨界调用与波形分析闭环。"
     ],
     // 💡 将视频文件命名为 ai-eda-agent.mp4 放入 public/ 后，改为 "/ai-eda-agent.mp4"
-    videoUrl: "/ai-eda-agent.mp4"
+    videoUrl: "/ai-eda-agent.mp4",
+    posterUrl: "/posters/ai-eda-agent.jpg"
   },
   {
     id: "erp-system",
@@ -76,7 +78,8 @@ export const projects = [
       "依托 DeepSeek 构建专业硬件参数 RAG，实现精准检索与参数溯源对比。"
     ],
     // 💡 将视频文件命名为 erp-system.mp4 放入 public/ 后，改为 "/erp-system.mp4"
-    videoUrl: "/erp-system.mp4"
+    videoUrl: "/erp-system.mp4",
+    posterUrl: "/posters/erp-system.jpg"
   }
 ];
 

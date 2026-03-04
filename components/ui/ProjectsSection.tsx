@@ -10,12 +10,12 @@ export default function ProjectsSection() {
   const titleY = useTransform(scrollYProgress, [0, 0.3], [40, 0]);
   const titleOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
-  // 追踪当前放大的视频 URL
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  // 追踪当前放大的视频项目 (储存项目对象以便获取 url 和 posterUrl)
+  const [activeProject, setActiveProject] = useState<{ videoUrl?: string, posterUrl?: string } | null>(null);
 
   // 当弹窗打开时，静止背景滚动
   useEffect(() => {
-    if (activeVideo) {
+    if (activeProject) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
@@ -23,7 +23,7 @@ export default function ProjectsSection() {
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [activeVideo]);
+  }, [activeProject]);
 
   return (
     <section id="projects" ref={sectionRef} className="py-28 bg-[#050505] text-white relative z-10 overflow-hidden">
@@ -73,12 +73,13 @@ export default function ProjectsSection() {
               {/* 视频/占位背景区 */}
               <div
                 className={`w-full h-52 bg-[#0a0a0a] relative overflow-hidden ${project.videoUrl ? 'cursor-pointer' : ''}`}
-                onClick={() => project.videoUrl && setActiveVideo(project.videoUrl)}
+                onClick={() => project.videoUrl && setActiveProject(project)}
               >
                 {project.videoUrl ? (
                   <>
                     <video
                       src={project.videoUrl}
+                      poster={project.posterUrl}
                       autoPlay loop muted playsInline
                       className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700 z-0"
                     />
@@ -168,20 +169,20 @@ export default function ProjectsSection() {
 
       {/* 视频放大弹窗 (Modal) */}
       <AnimatePresence>
-        {activeVideo && (
+        {activeProject && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-12"
-            onClick={() => setActiveVideo(null)}
+            onClick={() => setActiveProject(null)}
           >
             {/* 关闭按钮 */}
             <button
               className="absolute top-6 right-6 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors duration-200 border border-white/10 z-50"
               onClick={(e) => {
                 e.stopPropagation();
-                setActiveVideo(null);
+                setActiveProject(null);
               }}
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -198,7 +199,8 @@ export default function ProjectsSection() {
               onClick={(e) => e.stopPropagation()} // 防止点击视频区域本身关闭弹窗
             >
               <video
-                src={activeVideo}
+                src={activeProject.videoUrl}
+                poster={activeProject.posterUrl}
                 autoPlay
                 controls
                 className="w-full h-full object-contain"

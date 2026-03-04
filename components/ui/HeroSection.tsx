@@ -44,7 +44,7 @@ export default function HeroSection() {
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-  const tagline = "AI 全栈研发 · 顶级 Agent 架构师";
+  const tagline = "AI应用工程师 · Agent开发工程师";
   const { displayed: tagDisplayed } = useTypewriter(tagline, 50, 300);
 
   const scrollTo = (id: string) => {

@@ -86,7 +86,7 @@ export const projects = [
 export const openSourceProjects = [
   {
     id: "content-dist-engine",
-    name: "Content Distribution Engine",
+    name: "内容分发引擎 (Content Dist Engine)",
     description: "一个高效的内容分发引擎，支持自动化和多渠道的内容矩阵管理与发布。",
     emoji: "🚀",
     tags: ["TypeScript", "Node.js", "Automation", "Content Toolkit"],
@@ -95,16 +95,16 @@ export const openSourceProjects = [
   },
   {
     id: "matrix-todo-list",
-    name: "Matrix Todo List (四象限待办)",
+    name: "四象限待办 (Matrix Todo List)",
     description: "基于艾森豪威尔十字法则（四象限法则）打造的待办事项管理工具，通过科学划分优先级帮助用户专注核心任务。",
-    emoji: "�",
+    emoji: "🗂️",
     tags: ["React", "Time Management", "Productivity", "Frontend"],
     githubUrl: "https://github.com/LEExnnn/matrix-todo-list",
     stars: ""
   },
   {
     id: "cv-system",
-    name: "CV System (智能人才简历系统)",
+    name: "智能人才简历系统 (CV System)",
     description: "集成了 AI 辅助解析能力的综合性简历与人才档案管理平台，提供结构化的数据录入与呈现。",
     emoji: "📄",
     tags: ["AI", "Resume Parsing", "Full Stack", "System Architecture"],

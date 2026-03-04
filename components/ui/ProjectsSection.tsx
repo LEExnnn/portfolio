@@ -93,7 +93,7 @@ export default function ProjectsSection() {
                     />
 
                     {/* 加载中提示: 仅在视频尚未触发 canplay 事件时显示 */}
-                    {!loadedVideos.has(project.videoUrl) && (
+                    {!loadedVideos.has(project.videoUrl) ? (
                       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10 opacity-70 group-hover:opacity-0 transition-opacity duration-300">
                         <div className="flex items-center gap-2 px-3 py-1.5 bg-black/50 backdrop-blur-md rounded-full border border-white/10">
                           <svg className="animate-spin w-3.5 h-3.5 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -103,17 +103,23 @@ export default function ProjectsSection() {
                           <span className="text-[10px] text-gray-300 tracking-wider">视频加载中...</span>
                         </div>
                       </div>
+                    ) : (
+                      <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none bg-black/10 group-hover:bg-black/30 transition-colors duration-300">
+                        {/* 圆形播放按钮背景 (常驻显示，适配移动端) */}
+                        <div className="relative flex items-center justify-center w-14 h-14 rounded-full bg-black/40 backdrop-blur-md border border-white/20 group-hover:bg-indigo-600/60 group-hover:border-indigo-400/50 group-hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                          {/* 呼吸灯特效背景 */}
+                          <div className="absolute inset-0 rounded-full border border-indigo-500/30 opacity-0 group-hover:animate-ping group-hover:opacity-100" />
+                          <svg className="w-6 h-6 text-white ml-1 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
+                        {/* 移动端不依赖 hover 即显示的极简文字提示 */}
+                        <div className="absolute bottom-4 left-4 flex items-center gap-1.5 px-2.5 py-1 bg-black/50 backdrop-blur-sm rounded-md border border-white/10 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                          <span className="text-[10px] font-semibold text-white/90 tracking-wide">点击播放</span>
+                        </div>
+                      </div>
                     )}
-
-                    {/* 悬停放大提示 */}
-                    <div className="absolute inset-0 z-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-black/20">
-                      <span className="px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-lg text-xs font-semibold text-white/90 border border-white/20 flex items-center gap-2">
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-                        </svg>
-                        点击放大演示
-                      </span>
-                    </div>
                   </>
                 ) : (
                   <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/60 via-[#0a0a0a] to-purple-950/40">

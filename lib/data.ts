@@ -98,9 +98,9 @@ export const openSourceProjects = [
   },
   {
     id: "ai-architect-dojo",
-    name: "AI 架构师实战练习道场 (AI Architect Dojo)",
-    description: "一款专为大模型与 AI 架构师打造的沉浸式面试辅助系统。提供纯净阅读模式、知识点闪卡复习，并内置 AI 面试官进行模拟实战对战，帮助开发者高效准备核心技术面试。",
-    emoji: "⛩️",
+    name: "AI 应用与 Agent 开发面试真经",
+    description: "一本“长在网页里”的沉浸式 AI 架构面试通关指南。提炼 31 万字大模型研发硬核底层技术点，提供零干扰阅读、高频知识闪卡及 AI 面试官模拟对练，助您高效构建核心战斗力。",
+    emoji: "📘",
     tags: ["Next.js", "TailwindCSS", "Framer Motion", "AI/LLM", "Architecture"],
     githubUrl: "https://github.com/LEExnnn/ai-architect-dojo",
     stars: ""

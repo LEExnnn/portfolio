@@ -97,12 +97,12 @@ export const openSourceProjects = [
     stars: ""
   },
   {
-    id: "matrix-todo-list",
-    name: "四象限待办 (Matrix Todo List)",
-    description: "基于艾森豪威尔十字法则（四象限法则）打造的待办事项管理工具，通过科学划分优先级帮助用户专注核心任务。",
-    emoji: "🗂️",
-    tags: ["React", "Time Management", "Productivity", "Frontend"],
-    githubUrl: "https://github.com/LEExnnn/matrix-todo-list",
+    id: "ai-architect-dojo",
+    name: "AI 架构师实战练习道场 (AI Architect Dojo)",
+    description: "一款专为大模型与 AI 架构师打造的沉浸式面试辅助系统。提供纯净阅读模式、知识点闪卡复习，并内置 AI 面试官进行模拟实战对战，帮助开发者高效准备核心技术面试。",
+    emoji: "⛩️",
+    tags: ["Next.js", "TailwindCSS", "Framer Motion", "AI/LLM", "Architecture"],
+    githubUrl: "https://github.com/LEExnnn/ai-architect-dojo",
     stars: ""
   },
   {

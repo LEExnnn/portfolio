@@ -60,10 +60,10 @@ export default function Home() {
 
         <div className="pt-8 border-t border-white/[0.04]">
           <p className="text-sm font-light text-gray-600">
-            Built with ❤️ Next.js · Framer Motion · OpenAI
+            Built with ❤️ Next.js · Framer Motion · TypeScript
           </p>
           <p className="mt-2 text-xs text-gray-700">
-            © 2026 李祥宁 · 保留所有权利
+            © 2026 有方 · 保留所有权利
           </p>
         </div>
       </footer>

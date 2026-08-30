@@ -4,10 +4,10 @@
  */
 
 export const personalInfo = {
-  name: "李祥宁",
-  title: "AI应用工程师 / Agent开发工程师",
-  tagline: "AI 独立探索者 / 顶级产品架构师",
-  summary: "具备 5 年以上的核心系统研发经验，前国企技术骨干。拥有从底层 C/C++ 高性能计算到上层复杂 AI 应用 (Agent/RAG) 的全栈架构落地能力。擅长将大模型算力与企业业务深度结合，致力于通过 Vibe Coding 理念构建坚实可靠的企业级数字化底座。",
+  name: "有方",
+  title: "AI原生产品与Agent系统构建者",
+  tagline: "AI原生产品构建者 / Agent系统架构与落地",
+  summary: "具备 5 年以上核心系统研发经验，覆盖底层高性能计算、AI 应用、Agent 系统与全栈产品交付。擅长把复杂技术转化为可用、可验证、可持续迭代的真实产品。",
   contact: {
     phone: "18111222534",
     email: "396902267@qq.com",

@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "有方 · AI应用工程师 | Agent开发工程师",
-  description: "深耕 Vibe Coding 实践，将自然语言指令转化为生产可用的企业级 AI 数字化底座。5年核心系统研发经验，专注 Multi-Agent、RAG 与全栈落地。",
+  title: "有方 · AI原生产品与Agent系统构建者",
+  description: "用 AI、Agent 与全栈工程，把想法变成真正上线的产品。从产品设计、智能体协作到真实部署，持续构建可用、可验证、可迭代的 AI 产品。",
 };
 
 export default function RootLayout({

@@ -16,12 +16,10 @@ export default function ProjectsSection() {
   // 控制模态框中的视频加载状态
   const [modalVideoLoaded, setModalVideoLoaded] = useState(false);
 
-  // 每次打开新的视频，重置它的加载状态
-  useEffect(() => {
-    if (activeProject) {
-      setModalVideoLoaded(false);
-    }
-  }, [activeProject]);
+  const openProject = (project: { videoUrl?: string, posterUrl?: string }) => {
+    setModalVideoLoaded(false);
+    setActiveProject(project);
+  };
 
   // 当弹窗打开时，静止背景滚动
   useEffect(() => {
@@ -83,7 +81,7 @@ export default function ProjectsSection() {
               {/* 视频/占位背景区 */}
               <div
                 className={`w-full h-52 bg-[#0a0a0a] relative overflow-hidden ${project.videoUrl ? 'cursor-pointer' : ''}`}
-                onClick={() => project.videoUrl && setActiveProject(project)}
+                onClick={() => project.videoUrl && openProject(project)}
               >
                 {project.videoUrl ? (
                   <>

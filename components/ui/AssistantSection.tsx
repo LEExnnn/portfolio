@@ -48,10 +48,10 @@ function AiMessage({ content, isLatest }: { content: string; isLatest: boolean }
 }
 
 const AI_RESPONSES: Record<string, string> = {
-  default: "很抱歉，当前网络尚未连接正式的后端大模型服务。但我知道李祥宁擅长将大模型算力与业务深度结合，您可以随时探索上方的实战项目演示视频以获得直观感受。",
-  agent: "这就触及到核心了！李祥宁曾主导设计了 Voice-to-Code 智能研发中枢，基于 Multi-Agent 协作网络，甚至实现了 Zero-Touch 的探针自愈部署，子进程崩溃后主动驱动大模型修改代码，无需人工干预。",
-  rag: "在 RAG 领域，他非常有战斗力。他主导过企业级知识库中台，通过自研分片算子和混合检索（Milvus + BGE-M3 + Rerank），将极其复杂的政企长文档召回准确率提升到了 95% 以上，且首字节延迟仅需 250ms。",
-  fullstack: "李祥宁不仅懂底层 C/C++ 与 Linux 架构，更精通 Python (FastAPI/Flask) 后端开发与高并发调度。他的全栈开发能力让想法能在一周内极速落地成为生产可用的原型。",
+  default: "当前问答模块展示的是预设内容，尚未连接正式的大模型服务。想了解有方的能力与经验，可以优先查看上方的真实项目和演示视频。",
+  agent: "有方曾主导设计 Voice-to-Code 智能研发中枢，围绕 Multi-Agent 协作、任务编排与自动化交付，探索从自然语言需求到真实产品落地的完整链路。",
+  rag: "有方做过企业级知识库中台，围绕长文档分片、混合检索、向量召回和 Rerank 进行工程化优化，重点解决检索准确性、响应速度与结果可追溯性问题。",
+  fullstack: "有方具备从底层 C/C++、Linux 到 Python 后端和现代前端的完整工程视角，能够把产品设想推进为可运行、可验证、可持续迭代的真实系统。",
   vibe: "Vibe Coding 是他的核心生产力范式——通过自然语言驱动 AI Agents 完成代码质检、自动部署、Bug 定位，极大压缩了传统软件工程的交付周期，已在多个实战项目中验证有效。",
 };
 
@@ -75,7 +75,7 @@ export default function AssistantSection() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "您好！我是代表李祥宁的专属智能体 OMNI-WORKER。您可以向我询问关于他的工作经历、掌握的技术栈（如 Multi-Agent、RAG、Vibe Coding 等）或是关于某个具体项目的细节。",
+      content: "您好！我是有方主页中的交互问答模块。您可以了解他的技术方向、项目经历，以及 Multi-Agent、RAG、AI 原生开发等实践。当前回答来自页面预设内容。",
     },
   ]);
   const [loading, setLoading] = useState(false);
@@ -109,7 +109,7 @@ export default function AssistantSection() {
         return next;
       });
       setLoading(false);
-    }, 800 + Math.random() * 600);
+    }, 1100);
   };
 
   return (
@@ -147,9 +147,9 @@ export default function AssistantSection() {
             </motion.div>
             <div>
               <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-400">
-                与专属分身交流
+                探索有方的项目脉络
               </h2>
-              <p className="text-sm text-gray-600 mt-1">Powered by RAG · DeepSeek / Gemini</p>
+              <p className="text-sm text-gray-600 mt-1">预设知识演示 · 当前未接入在线大模型</p>
             </div>
           </div>
         </motion.div>
@@ -176,10 +176,10 @@ export default function AssistantSection() {
               <div className="w-3 h-3 rounded-full bg-yellow-500/40 border border-yellow-500/60 hover:bg-yellow-500 transition-colors cursor-default" />
               <div className="w-3 h-3 rounded-full bg-green-500/40 border border-green-500/60 hover:bg-green-500 transition-colors cursor-default" />
             </div>
-            <span className="ml-3 text-xs text-gray-600 tracking-widest font-mono">OMNI-WORKER.exe</span>
+            <span className="ml-3 text-xs text-gray-600 tracking-widest font-mono">PRESET-KNOWLEDGE.demo</span>
             <div className="ml-auto flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] text-emerald-600 font-mono">ONLINE</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+              <span className="text-[10px] text-amber-500/80 font-mono">PRESET</span>
             </div>
           </div>
 
@@ -258,7 +258,7 @@ export default function AssistantSection() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                placeholder="问点什么... 例如：李祥宁在 RAG 上做过什么？"
+                placeholder="问点什么... 例如：有方在 RAG 上做过什么？"
                 className="flex-1 bg-transparent px-4 py-4 text-sm text-gray-200 outline-none placeholder:text-gray-700 font-mono"
               />
               <motion.button
